@@ -1,0 +1,233 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['NOMBRE_USUARIO'])){
+        echo 'debes iniciar seccion';
+        session_destroy();
+		header("Location: ../../vista/register.php");
+        die();
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keyword" content="compras,joyas,categorias,ofertas,relojes,oro">
+	<link href="../css/styles.css" rel="stylesheet" type="text/css">
+	<link href="../css/categorias.css" rel="stylesheet" type="text/css">
+	<link href="../css/joyas.css" rel="stylesheet" type="text/css">
+	<link href="../css/card.css" rel="stylesheet" type="text/css">
+	<link rel="icon" type="favicon" href="../img/favicon.ico">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<title>Categorias-Joyas</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="navbar">
+			<div class="logo">
+				<a href="../../../vista/inicio.php"> <img src="../img/logo.png"></a>
+			</div>
+			<div class="nav_right">
+				<ul>
+					<ul class="opcionmenu">
+					<li><a href="../../../vista/inicio.php">INICIO</a></li>
+					<li><a href="#">OFERTAS</a></li>
+					<li><a href="../admin.php">VENDER</a></li>
+					<li><a class="active" href="../categorias.php">CATEGORIAS</a></li>
+					<li><a href="#">TODO</a></li>
+					</ul>
+					
+					<li class="nr_li">
+						<i class="fa fa-search"></i>
+					</li>
+					
+					<li class="nr_li dd_main">
+						<img src="../../img/profileimg.png" alt="profile_img">
+						
+						<div class="dd_menu">
+							<div class="dd_left">
+								<ul>
+									<li><i class="fa fa-user"></i></li>
+									<li><i class="fa fa-th-large"></i></li>
+									<li><i  class="fa fa-pen"></i></li>
+									<li><i class="fa fa-heart"></i></li>
+									<li><i class="fa fa-store"></i></li>
+									<li><i class="fas fa-envelope-open-text"></i></li>
+									<li><i class="fa fa-question"></i></li>
+									<li><i class="fas fa-cog"></i></li>
+									<li><i class="fas fa-sign-out-alt"></i></li>
+								</ul>
+							</div>
+							<div class="dd_right">
+								<ul>
+									<li><?php echo $_SESSION['NOMBRE_USUARIO'];?></li>
+									<li><a href="../admin.php">Plataforma</a></li>
+									<li><a href="../modificar.php">Ver pefil</a></li>
+									<li><a href="">Mis favoritos</a></li>
+									<li><a href="">Mis compras</a></li>
+									<li><a href="">Mis mensajes</a></li>
+									<li><a href="">Ayuda</a></li>
+									<li><a href="">Configuración</a></li>
+									<li><a href="../../../controlador/action/act_logout.php">Cerrar sesión</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>	
+
+	<section class="hero">
+		<div class="banner-contain">
+			<a href="#OFERTAS">Comprar</a>
+		</div>
+	</section>
+
+	<section class="products">
+		<h2>JOYAS</h2>
+		<div class="all-products">
+			<div class="product">
+				<img src="https://lh3.googleusercontent.com/sfvm0YYGb3ZfJ1j-Ie2nstT02FqyF77Y29b6JRCjTuJIox29PMAbjVlMnGrOFD5styV87YLWc1S-lLcCxxyvgqh6Fq2p1V0CDMceIRkddcUCwEcp--5hIiY95Jj7nSHV4TFIzlXM_svfpVKX2WMOeP5WhwAu11fov0sdcBhy0vldVADIML9n465-vFA3gXgVb-J5k2vgDdlGZQy6c4Vx2H5ZVkK9Cf50aJT5y5EDcaVWwq-S0Xu3GoQzOl3QSeeR5d6QuC6Ph-wPnUcuY-6nEJbMnHRQknpemPtKrzMwHyXCua3steBiYN7xDx9qI3-Qpj2WWkXotvDuI7ITA59MJA6CYV3XaqfY4y7wsBezN326F6ZjOourE-lQY2uGbNBrJHYITynKDASXR_if1Nos_gqF1k7AKihc1n6FHz-w9c3y-wzi4HwrZDEVPp_iFwzA0qCbsQR3D3VphiFoHaIxz2tgzzaKre8VZEPZN8qvWOAXN-miDTieE8_SxSDKUfqs_XQL_FCP5rcKXezw7A0KwXg1XrsXmL640idD53Dtlmz2pF2xMtf-xYAB3h9eINMEocbDhMoNyMh9AM69uo0rnQkgy8-0GDvUIVr-QQPmZusZGlTnmZWiPUQfChmK3pmvV1JoA6plNIPmVRz0QSS-gnCo6UBkTsQ5JZUag-qEPeY-RMPw28OKrZRKboxZq9VD0sY8Am2gSP2jWKMACcLR6stqlwYLetDRgNh1BTRzUjHjMiOVuGeSoMl1wfO7ALxBtU13Rs1HciQfaF2GcROPyepkFrVJWxke63z3h4mbNdv9p7AXDnf_uev-N5GUg3OjF4QL3BahK6tTImN3uuwvCyutNOzVIRxnCH5EcB2jAGMMS1AJYzc9qHDDLH80Pgm1In6XBwwB0DTg7HslrZ79H_QWHajVrCIX5lK-mwIXgE-ePXAGd50ns3GT4H-kkfaJSwpU3qjfdLfeIo45msnElkt7bw9wJ-wdek5oJD96EciictFSQa9OPf9VZp9mgmR5lIDIAjuDPPOaUj5X4AM_OHw3P3N2ZJlTV-hlH9EPtrvvLnkAlRVzrqVEdHKIXsDZ7A=w310-h311-no?authuser=0">
+				<div class="product-info">
+					<h4 class="product-title">Reloj Lige
+					</h4>
+					<p class="product-price">Precio: $229.999</p>
+					<a class="product-btn" href="#">Comprar</a>
+
+				</div>
+			</div>
+			<div class="product">
+				<img src="https://lh3.googleusercontent.com/gSq0WMbCg5NqX8MLN85JCTE4ZHwlSiFh20sn4iksHLrN6pyWEmn2oqC7tEChnnVgNsDc-iCMPatkYzsiipg5itd3VyxGygShitCMgsGp4WEWwqDXp1Wm5Ane3a2F0_PP1qSr9zZ1qyMexR4rYontun7i-If5vUOuvF7rsF3HonENNxULPk5GuaWPwHNa-Qw4ItW5YT0TlbX51thlaqHBe6cqLHjXTTJlOUjolJJ-uFElGEqvG7WDv7Oc-47BhU0U-InpdoNq6XCENaSKu9JhPD33_34MUmzPB3TZzLKajPB-lQyZGbcrPxpmWll06A0G4HeSCTDF09kXB3YbIFf9iMSbi95CgKL7G60jX6kB_MJEGmasSWkC18pAVC_ooIS0TUtQpwsfKfmKdcfItOX-hz7aQkRomUum7696X6D-FoCxeHdJasasZq4JCYfQO_eqy6FfVDtn8LeK6PYkk--w_8ybk6DcTgLGWKdQ5dSuKpV80w3L9Pj0B-cFiOVFgVR4EZzh6jDzpf9OmyLeSd7QYlm26zpVSgetSn2BA8ON0f4qkKYR724BEX5d4GiXMNIftvLD082kLOJgWbm-RkxnUnef_ynKqao_95EeXqRIhmv33vuW1UQ8s3Z_0WVjFO89TU0CNswyi_uNo3CmBeT4rAPw_oJF8syBQQ_Hmzr5IHgUJVLegpbOREPAHsGqx3XMDp1pWKBpva-uZDBENIf1-2qgrnjFAJ1scr6onw4xxhWpSxnZztYbeH5-APuuHwvouNjbS2zAVbTu_HsAMFImMdf7Vnd4FfB8JFaSuDpk0yGG9fQBk4EeElBwC2YhUuc9EiEFhApfqpcLNWHdx2B2A2ZbckIBiJfhiSO2uHkVbJoBlJCG6ktOfMvBK6LMB8p02ZGjNRGq8oI-eJZTXtupuJGwBza_5CDGYfDDGpIKyUcJsjqv9c1GTaaSfUChb2TCkFkEyT9qa68a52-FgJLaluMPeT44qBdy50enA9a4RRCBPF4VaGY0sNTgvdlk8UGyGX83Cfvwe-IibPcK0cROxj9UssKzhacUwN0eW6uIw_aeTddRJRWjcbVXIk6tMU3gSw=w698-h698-s-no?authuser=0">
+				<div class="product-info">
+					<h4 class="product-title">Cadena Oro 18k
+					</h4>
+					<p class="product-price">Precio: $519.999</p>
+					<a class="product-btn" href="#">Comprar</a>
+
+				</div>
+			</div>
+			<div class="product">
+				<img src="https://lh3.googleusercontent.com/fxvsIhFYBbetLgBheOojCDG8I0wNzNQwGq7nPQ0Lle15cfTrWimdoyM8dI_OmkU71escrkDcyf7Qq8SwkR2gGqXJfmUyNDSktKs6xU7tuO3RF18r_V86RrtCcty53qwB3X2TwquYn0bpXjXZnOdrsDZKkEa595nTNgxiqW3U3ci9xwZL4CWI_hBvHqSaZfeOv7oE7Rlz5-tmbley6H0Wskvb5_C4WN_bVv87uysSpB7fbkO4vrzSK_7u9g1Ge4abbAalwmqSnI13XS5_0VruypeK5VdsWDwOdeHVflBAvSQj3X2EvF5LD-8YiluQXNb6KCwZHIBBr1eJYaCMJwVQlgKA63XLyb1FKdoFq9i9AFPzVs6_IDr4NbijT0yMSGu6xeQ1tmM2BO4o8PlZds-dku-j160QxiHj7fkxd27g7S3J7u5jwNQA3hOVOChTM_KAGBlJujWuQIebax787DQC6NZkXCmLUBqyqwldGKRoyCh4LFfqUotnRD4m_ti7yFsgL5s2vlNbaGRHKANB82O6sPsl2277uvKTQGhqIhrW4oyxhDtEy7aAz6kOYUoYzS-lWm7fE0efPEE85wTwJ46p_FV_q5m_KUKHR1TFfX_UNg2Yu3EehNNkgcstFHeo7rRAI9dw9GhWOR934wj_GICG9_b6-N0ncUtLT7g74B-WXHYDmp9z2fOAl_odDqZit0zuFDV-wCGj8SeHX7IQHxW_RjKEB_fv7QWv3lUjTEwDDyQACpsX3dCeep6nJaWMDzJxKFGlFaIYfwE2vKgWE298IEZXr0RPoShjK85eaVxV4Q9YHxq0ASYoSiHsQzq2fWqONcb_w4O72ID6C-MV01lZZpX_bHSeHmjCV2W2jqdcdDX-NaESKBHDK4mY7re3hUpbMH5R5Vzko0Fd5009DwjbrfXsjqgMUf-bVxnGHM8e_wt_T-X9AbM_1NIvMzzWM772_yLbNMEiKzuGVcz2ikK2AMuXBx6r1VmQqTNXmefe_Z9rnnuwFZeABUeQok7RVyA-pi5jgK8jnvaFww7Y0gH94KIDTIM5eXX8ScLn6BOKPf6Ko5W6Uh_k5QjBFobWF_JcSg=w728-h698-s-no?authuser=0">
+				<div class="product-info">
+					<h4 class="product-title">Juego de oro 18k
+					</h4>
+					<p class="product-price">Precio: $739.999</p>
+					<a class="product-btn" href="#">Comprar</a>
+
+				</div>
+			</div>
+			<div class="product">
+				<img src="https://lh3.googleusercontent.com/jNtaNoNKF3ADa_X45MJgig9Yz86-ufLyuP1tfJm428BONxBFg-H7xfqjgUcixJeF-xBLgCP2y62fR3rJDvzv7FJkoelW63dp7lvOdWDpkC4md3Zi2FyXah3KQjRK0gBdPu7ieRKups4rUt7aKqmT7sqfl_x7ozBwrFo5BLSJXWJAHlhOyE0y1t4WAracTU1Z-eAjY8x7KeqUOEOoe1jlTaH-uLlKwQPs8sMiLzcYHMHiGc-Lu0ioeYpN-P8yBz2ziNN19bEZnZLKSUhu858NGtdnxFWcr1mY1ZOIrnKJubQUB2tTtbPLT5O0yk3bz7Q1pqSaB7_kuOKZuM1YDOd4E4kE1UXpQ3wgajezoWy4Yh5C7wq3PDHgAqa8MnydC6NCryr_NPHv-AcFkJ7YQlzBqKms3RZP_2xZ8f13fu6ACkKgCuELQyA8mrG4RKBFM9Awtlxb0yBV_HbRfagf-HhmHYMZxkB0n62lVQN-ohvod7aXKQ956lzI-lTXJ7t_sZSvOZmEryGKOk3-MWOElfSQvfZl6brFPnuXcMJvuTYFuqcUKl7wcYhPu7E50wEyx58r_r5Rt89VetSxfPUiO2sccCL4UvtHMVXaD5KcqfO1_3xCdEIGN-xDdTTLI33jiD1J8ciWKw7OXtNJ9_SBky8iuG7BoxRf8u1KHj81q_yCDx7yCf6fo4tYR0jSZVpa1ShVycl-TS3JNqeIVHrD0wqgNYY2SGY5N5NoLHRVFHykyfTYvSKfuWsB5eETzS4Gc15Sp6kLYmqFuv_9lUU8UjKsWBdhMd57TsTz3aDoCNDc0LziL4AwZ066EfXoK1tEpy5y6SDzKzDdFmvQcZecqmBqjhk-vjz3f667iWOD3s2xQSHhvdYGne6KuNojpILfoVDxvbhpG-Ivc5cO_7LZtYEfJOeemmZNXKKTwARSYbH16n_IQPFVTjuae1Ip5yeM0sDDkDNn_cV6iHnbsvzqCNQWVw4h2rNaHXgiKNLQyR6mJKORj3rkpfiNFqc7NahDjE16vmMWcMrg0gzUgA5jyO7fJ7WGyABvE_67uHTMK7RQubMz0cwk908dh6T2r6h6EltykQ=w698-h698-s-no?authuser=0">
+				<div class="product-info">
+					<h4 class="product-title">Anillo Cristo 18k
+						</h4>
+					<p class="product-price">Precio: $959.999</p>
+					<a class="product-btn" href="#">Comprar</a>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="separador">
+			
+	</section>
+
+
+	<!--Contenido de pie de pagina-->
+
+		<section class="info">
+			<div class="containerinfo">
+				<div class="sbox">
+					<h2 class="box__titulo">Calidad y buen precio</h2>
+					<div class="sub-box">
+						<div class="calidad__img"></div>
+						<p class="box__texto"> Contamos con la mejor calidad del mercado en nuestros productos, con precios <span>competitivos y asequibles.</span> </p>
+					</div>
+				</div>
+				<div class="sbox">
+					<h2 class="box__titulo">Paga seguro</h2>
+					<div class="sub-box">
+						<div class="seguridad__img"></div>
+						<p class="box__texto">Paga seguro con algunos de nuestros patricinadores, <span>VISA, MASTERCARD, EFECTY.</span> </p>	
+					</div>
+				</div>
+				<div class="sbox">
+					<h2 class="box__titulo">Envios gratis</h2>
+					<div class="sub-box">
+						<div class="envios__img"></div>
+						<p class="box__texto"><span>Envios totalmente gratis</span>  en las compras que realices en nuestra plataforma, pagando por medio de algunos de nuestros <span>patrocinadores.</span></p>	
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="pqr">
+			<div class="containerpqr">
+				<li class="lista">
+					<h2 class="lista__titulo">Te ayudamos</h2>
+					<ul><a href="#" class="lista__enlace">Mi cuenta</a></ul>
+					<ul><a href="#" class="lista__enlace">Seguimiento de mi orden</a></ul>
+					<ul><a href="#" class="lista__enlace">Medios de pagos</a></ul>
+					<ul><a href="#" class="lista__enlace">Métodos de entrega</a></ul>
+				</li>
+				<li class="lista">
+					<h2 class="lista__titulo">Atencion al cliente</h2>
+					<ul><a href="#" class="lista__enlace">Atencion 24/7</a></ul>
+					<ul><a href="#" class="lista__enlace">Términos y condiciones</a></ul>
+					<ul><a href="#" class="lista__enlace">Transacciones</a></ul>
+					<ul><a href="#" class="lista__enlace">Encuestas</a></ul>
+				</li>
+				<li class="lista">
+					<h2 class="lista__titulo">Quienes somos</h2>
+					<ul><a href="#" class="lista__enlace">Mision y vision</a></ul>
+					<ul><a href="#" class="lista__enlace">Preguntas frecuentes</a></ul>
+					<ul><a href="#" class="lista__enlace">Conocenos</a></ul>
+					<ul><a href="#" class="lista__enlace">Social</a></ul>
+				</li>
+				<li class="lista">
+					<h2 class="lista__titulo">PQR</h2>
+					<ul><a href="#" class="lista__enlace">Cambios y devoluciones</a></ul>
+					<ul><a href="#" class="lista__enlace">Reversion del pago</a></ul>
+				</li>
+			</div>
+		</section>
+
+		<script>
+			var dd_main = document.querySelector(".dd_main");
+
+			dd_main.addEventListener("click", function(){
+				this.classList.toggle("active");
+			})
+		</script>
+	<footer>
+		<div class="container__redes">
+			<div class="iconos__redes">
+				<a href="https://www.facebook.com"><i class='bx bxl-facebook icons'></i>
+				<a href="https://www.twitter.com"><i class='bx bxl-twitter icons'></i>
+				<a href="https://www.instagram.com"><i class='bx bxl-instagram icons'></i>
+			</div>
+			<a href="#" class="redes__enlace">Suscríbete y entérate de nuestras ofertas y productos</a>
+		</div>
+
+		<div class="container__derechos">
+			<span class="texto__derecho"><i class='bx bx-copyright copy'></i> TODOS LOS DERECHOS RESERVADOS</span>
+			<span class="texto__derechos">TraderSMR de
+				Colombia S.A. Calle 99 11A-32 Santa Marta Colombia  Teléfono: Santa Marta 00000 Mail: servicioalcliente@tradersmr.com.co
+			</span>
+			<span class="texto__derechoss"><img src="../../../vista/img/norton.svg" alt="Logo de norton empresa de cyberseguridad" class="img-norton">COMPRA 100% SEGURA</span>
+		</div> 
+	</footer>
+
+</body>
+</html>
